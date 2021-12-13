@@ -7,7 +7,7 @@ public class main {
     public static void main(String args[]) throws SQLException {
         LoginService lg = new LoginService();
 
-        lg.test_method();
+        //lg.test_method();
     }
 
 }

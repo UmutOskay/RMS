@@ -11,7 +11,6 @@ public class LoginService {
     private JDBCConnection jdbc_conn;
     private Connection conn;
     private Statement stmt;
-    private Salter salter;
 
     public LoginService(){
         this.jdbc_conn = new JDBCConnection();
@@ -20,13 +19,19 @@ public class LoginService {
     }
 
 
-    public boolean validate_user(String username, String password) throws SQLException {
+    // Below method returns -1 if user does not exist, returns 0 if user exists and is admin, returns 1 if user exists and not admin
+    public int validate_user(String faculty_id, String password) throws SQLException {
         password = Salter.salt(password, "RMS");
-        ResultSet rs = this.stmt.executeQuery("select faculty_id from user");
-        while(rs.next())
-            System.out.println(rs.getString(1));
-        return true;
+        faculty_id = faculty_id.toUpperCase();
+        PreparedStatement stmt = this.conn.prepareStatement("select is_admin from user where faculty_id=? and user_password=?");
+        stmt.setString(1, faculty_id);
+        stmt.setString(2, password);
+        ResultSet rs = stmt.executeQuery();
+        if(rs.next()) {
+            if(rs.getBoolean(1)) return 0;
+            else return 1;
+        }
+        return -1;
     }
-
 
 }

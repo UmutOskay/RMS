@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author muhse
@@ -90,9 +92,11 @@ public class BanFrame extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+      //  this.dispose();
         java.awt.EventQueue.invokeLater(() -> {
-                new AdminFrame().setVisible(true);
+               // new ResultDialog().setVisible(true);
+               BanFrame frame = new BanFrame(); 
+               JOptionPane.showMessageDialog(frame, "User banned.");
             });
     }//GEN-LAST:event_submitButtonActionPerformed
 

@@ -30,9 +30,12 @@ public class BanFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         submitButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
+        bannedDaysLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
+        bannedDaysTextField = new javax.swing.JTextField();
+        usernameTextField = new javax.swing.JTextField();
+        banPanelLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,9 +47,9 @@ public class BanFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("jLabel1");
+        usernameLabel.setText("USERNAME:");
 
-        jLabel2.setText("jLabel2");
+        bannedDaysLabel.setText("DAYS FOR BANNED:");
 
         backButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         backButton.setText("<-- BACK");
@@ -56,33 +59,54 @@ public class BanFrame extends javax.swing.JFrame {
             }
         });
 
+        usernameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameTextFieldActionPerformed(evt);
+            }
+        });
+
+        banPanelLabel.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        banPanelLabel.setText("Ban Panel");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(417, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bannedDaysLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                    .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(usernameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                    .addComponent(bannedDaysTextField))
+                .addGap(350, 350, 350))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(banPanelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel1)
-                .addGap(70, 70, 70)
-                .addComponent(jLabel2)
-                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(banPanelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bannedDaysLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bannedDaysTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71)
                 .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -91,13 +115,34 @@ public class BanFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        // TODO add your handling code here:
-      //  this.dispose();
-        java.awt.EventQueue.invokeLater(() -> {
-               // new ResultDialog().setVisible(true);
-               BanFrame frame = new BanFrame(); 
-               JOptionPane.showMessageDialog(frame, "User banned.");
+        String enteredId = usernameTextField.getText();
+        String amountOfBannedDays = bannedDaysTextField.getText();
+        
+        if(enteredId.equals("") && amountOfBannedDays.equals("")) {
+            java.awt.EventQueue.invokeLater(() -> {
+            BanFrame frame = new BanFrame();
+            JOptionPane.showMessageDialog(frame, "Please enter username and amount of days for banned." );
             });
+        }
+        else if(amountOfBannedDays.equals("")) {
+            java.awt.EventQueue.invokeLater(() -> {
+            BanFrame frame = new BanFrame();
+            JOptionPane.showMessageDialog(frame, "Please enter amount of days for banned." );
+            });
+        }
+        else if(enteredId.equals("")) {
+            java.awt.EventQueue.invokeLater(() -> {
+            BanFrame frame = new BanFrame();
+            JOptionPane.showMessageDialog(frame, "Please enter a username." );
+            });    
+        }
+        else{
+        java.awt.EventQueue.invokeLater(() -> {
+            BanFrame frame = new BanFrame();
+            JOptionPane.showMessageDialog(frame, "User " + enteredId + " is banned for " + amountOfBannedDays + " days." );
+            });
+        }
+                         
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -107,6 +152,10 @@ public class BanFrame extends javax.swing.JFrame {
                 new AdminFrame().setVisible(true);
             });
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,8 +194,11 @@ public class BanFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel banPanelLabel;
+    private javax.swing.JLabel bannedDaysLabel;
+    private javax.swing.JTextField bannedDaysTextField;
     private javax.swing.JButton submitButton;
+    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }

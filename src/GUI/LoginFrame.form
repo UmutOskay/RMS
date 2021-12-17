@@ -108,6 +108,9 @@
           <Color blue="f0" green="f0" red="f0" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userIDActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="userIDLabel">
       <Properties>

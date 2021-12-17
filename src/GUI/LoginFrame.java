@@ -56,6 +56,11 @@ public class LoginFrame extends javax.swing.JFrame {
         });
 
         userID.setBackground(new java.awt.Color(240, 240, 240));
+        userID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userIDActionPerformed(evt);
+            }
+        });
 
         userIDLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         userIDLabel.setForeground(new java.awt.Color(102, 102, 255));
@@ -131,6 +136,10 @@ public class LoginFrame extends javax.swing.JFrame {
             loginInfo.setText("Wrong Credientials");
         }
     }//GEN-LAST:event_loginButtonMousePressed
+
+    private void userIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userIDActionPerformed
 
     /**
      * @param args the command line arguments

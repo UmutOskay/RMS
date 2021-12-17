@@ -24,8 +24,11 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="833" max="32767" attributes="0"/>
-              <Component id="banButton" min="-2" pref="140" max="-2" attributes="0"/>
+              <EmptySpace pref="847" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="banButton" pref="140" max="32767" attributes="0"/>
+                  <Component id="submitBookingButton" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -35,7 +38,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Component id="banButton" min="-2" pref="34" max="-2" attributes="0"/>
-              <EmptySpace pref="435" max="32767" attributes="0"/>
+              <EmptySpace pref="433" max="32767" attributes="0"/>
+              <Component id="submitBookingButton" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,6 +51,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="banButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="submitBookingButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Submit Booking"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitBookingButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

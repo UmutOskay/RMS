@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author muhse
@@ -29,13 +31,12 @@ public class UserFrame extends javax.swing.JFrame {
 
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        submitBookingButton = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(400, 300));
-        setPreferredSize(new java.awt.Dimension(1100, 600));
         setResizable(false);
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -63,10 +64,10 @@ public class UserFrame extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable3);
         jTable3.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        jButton1.setText("Submit My Booking");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        submitBookingButton.setText("Submit My Booking");
+        submitBookingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                submitBookingButtonActionPerformed(evt);
             }
         });
 
@@ -99,7 +100,7 @@ public class UserFrame extends javax.swing.JFrame {
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92))
             .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
         );
@@ -111,16 +112,20 @@ public class UserFrame extends javax.swing.JFrame {
                 .addGap(72, 72, 72)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void submitBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBookingButtonActionPerformed
+  
+        java.awt.EventQueue.invokeLater(() -> {
+               UserFrame frame = new UserFrame(); 
+               JOptionPane.showMessageDialog(frame, "Booking is submitted.");
+            });
+    }//GEN-LAST:event_submitBookingButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,10 +163,10 @@ public class UserFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable5;
+    private javax.swing.JButton submitBookingButton;
     // End of variables declaration//GEN-END:variables
 }

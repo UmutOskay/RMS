@@ -15,13 +15,6 @@ CREATE TABLE IF NOT EXISTS user(
     time_slots_left int not null,
     PRIMARY KEY (faculty_id)
     );
-    
-CREATE TABLE IF NOT EXISTS reservations(
-	student_id MEDIUMTEXT not null,
-    room_id int not null,
-    time_slot MEDIUMTEXT not null
-);
-
 CREATE TABLE IF NOT EXISTS room(
 	room_id int not null,
     room_location MEDIUMTEXT not null,
@@ -34,5 +27,14 @@ CREATE TABLE IF NOT EXISTS room(
     is_available_at_14 BOOLEAN not null,
     is_available_at_15 BOOLEAN not null,
     is_available_at_16 BOOLEAN not null,
-    is_available_at_17 BOOLEAN not null
+    is_available_at_17 BOOLEAN not null,
+	PRIMARY KEY (room_id)
+);    
+CREATE TABLE IF NOT EXISTS reservations(
+	faculty_id VARCHAR(10) not null,
+    room_id int not null,
+    time_slot MEDIUMTEXT not null,
+    FOREIGN KEY (faculty_id) REFERENCES user(faculty_id),
+    FOREIGN KEY (room_id) REFERENCES room(room_id)
 );
+

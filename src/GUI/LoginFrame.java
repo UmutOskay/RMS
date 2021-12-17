@@ -28,19 +28,21 @@ public class LoginFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
         userID = new javax.swing.JTextField();
         userIDLabel = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
         passwordLabel = new javax.swing.JLabel();
         loginInfo = new javax.swing.JLabel();
+        password = new javax.swing.JPasswordField();
 
         jLabel1.setText("jLabel1");
+
+        jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
         setLocation(new java.awt.Point(800, 350));
-        setMaximumSize(new java.awt.Dimension(320, 290));
         setName("loginFrame"); // NOI18N
         setResizable(false);
 
@@ -58,8 +60,6 @@ public class LoginFrame extends javax.swing.JFrame {
         userIDLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         userIDLabel.setForeground(new java.awt.Color(102, 102, 255));
         userIDLabel.setText("USER ID:");
-
-        password.setBackground(new java.awt.Color(240, 240, 240));
 
         passwordLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         passwordLabel.setForeground(new java.awt.Color(102, 102, 255));
@@ -80,11 +80,10 @@ public class LoginFrame extends javax.swing.JFrame {
                         .addComponent(userIDLabel))
                     .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(userID)
-                        .addComponent(password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(userID)
+                    .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
                 .addContainerGap(21, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -96,15 +95,15 @@ public class LoginFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userID, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userID, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userIDLabel))
-                .addGap(37, 37, 37)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginInfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -140,9 +139,10 @@ public class LoginFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginInfo;
-    private javax.swing.JTextField password;
+    private javax.swing.JPasswordField password;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField userID;
     private javax.swing.JLabel userIDLabel;

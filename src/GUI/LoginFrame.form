@@ -7,15 +7,17 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="autoRequestFocus" type="boolean" value="false"/>
     <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
       <Point value="[800, 350]"/>
-    </Property>
-    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[320, 290]"/>
     </Property>
     <Property name="name" type="java.lang.String" value="loginFrame" noResource="true"/>
     <Property name="resizable" type="boolean" value="false"/>
@@ -49,12 +51,10 @@
                   <Component id="passwordLabel" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="loginButton" min="-2" pref="114" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="userID" max="32767" attributes="0"/>
-                      <Component id="password" alignment="1" min="-2" pref="176" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="userID" max="32767" attributes="0"/>
+                  <Component id="password" pref="176" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
@@ -70,17 +70,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="userID" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                  <Component id="userID" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                   <Component id="userIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="password" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="passwordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="loginInfo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="56" max="32767" attributes="0"/>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
               <Component id="loginButton" min="-2" pref="41" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
@@ -120,13 +120,6 @@
         <Property name="text" type="java.lang.String" value="USER ID:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="password">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="f0" green="f0" red="f0" type="rgb"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="passwordLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -147,6 +140,8 @@
           <Color blue="24" green="24" red="ce" type="rgb"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="password">
     </Component>
   </SubComponents>
 </Form>

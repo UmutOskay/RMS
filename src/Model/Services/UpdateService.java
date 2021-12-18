@@ -1,7 +1,14 @@
 package Model.Services;
 
 import Model.JDBCConnection.JDBCConnection;
+import Model.Mail.MailService;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.sql.*;
 
 public class UpdateService {
@@ -9,11 +16,15 @@ public class UpdateService {
     private JDBCConnection jdbc_conn;
     private Connection conn;
     private Statement stmt;
+    private MailService ms;
+    private Session session;
 
     public UpdateService() {
         this.jdbc_conn = new JDBCConnection();
         this.conn = jdbc_conn.getCon();
         this.stmt = jdbc_conn.getStmt();
+        this.ms = new MailService();
+        this.session = ms.getSession();
     }
 
     // When a user reserves a room, room availability information shall change. SRS-RMS-001.2
@@ -22,15 +33,21 @@ public class UpdateService {
 
 
     public int reservation(String student_id, int room_id, String time_slot) throws SQLException {
-        PreparedStatement stmt = this.conn.prepareStatement("select * from reservations where room_id=? and time_slot=?;");
+        PreparedStatement stmt = this.conn.prepareStatement("select user_mail from user where faculty_id=?");
+        stmt.setString(1, student_id);
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        String user_mail = rs.getString(1);
+
+        stmt = this.conn.prepareStatement("select * from reservations where room_id=? and time_slot=?;");
         stmt.setInt(1, room_id);
         stmt.setString(2, time_slot);
-        ResultSet rs = stmt.executeQuery();
+        rs = stmt.executeQuery();
         if(rs.next()){
             System.out.println("Room is already reserved");
             return -1; // -1 means room is already reserved. SRS-RMS-003.1
         }
-        stmt = this.conn.prepareStatement("select * from reservations where student_id=? and time_slot=?;");
+        stmt = this.conn.prepareStatement("select * from reservations where faculty_id=? and time_slot=?;");
         stmt.setString(1, student_id);
         stmt.setString(2, time_slot);
         rs = stmt.executeQuery();
@@ -57,6 +74,30 @@ public class UpdateService {
         stmt.executeUpdate();
         System.out.println("Room is reserved");
 
+        try {
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
+
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress("rmsinfo724@gmail.com"));
+
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(user_mail));
+
+            // Set Subject: header field
+            message.setSubject("Room Reservation");
+
+            // Now set the actual message
+            message.setText("Your room has been reserved");
+
+            System.out.println("sending...");
+            // Send message
+            Transport.send(message);
+            System.out.println("Sent message successfully....");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+
 
         // When a user makes X hours reservation, the possible reservation hour can be made by the user shall decrease by X hour. SRS-RMS-005.1
         stmt = this.conn.prepareStatement("update user set time_slots_left=time_slots_left-1 where faculty_id=?");
@@ -71,6 +112,7 @@ public class UpdateService {
         rs.next();
         System.out.println(rs.getInt(7));*/
 
+        // did not change room information yet
 
 
         return 0; // 0 means reservation is successful. SRS-RMS-002.1

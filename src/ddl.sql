@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS user(
     is_admin BOOLEAN not null,
     is_banned BOOLEAN not null,
     time_slots_left int not null,
+    banned_at date, 
     PRIMARY KEY (faculty_id)
     );
 CREATE TABLE IF NOT EXISTS room(
@@ -34,6 +35,7 @@ CREATE TABLE IF NOT EXISTS reservations(
 	faculty_id VARCHAR(10) not null,
     room_id int not null,
     time_slot MEDIUMTEXT not null,
+    time_of_reservation date not null, 
     FOREIGN KEY (faculty_id) REFERENCES user(faculty_id),
     FOREIGN KEY (room_id) REFERENCES room(room_id)
 );

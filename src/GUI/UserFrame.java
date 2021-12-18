@@ -35,6 +35,7 @@ public class UserFrame extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
         listOfRoomsListLabel = new javax.swing.JLabel();
+        logoutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(400, 300));
@@ -97,6 +98,14 @@ public class UserFrame extends javax.swing.JFrame {
         listOfRoomsListLabel.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         listOfRoomsListLabel.setText("List of Rooms");
 
+        logoutButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        logoutButton.setText("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,13 +119,19 @@ public class UserFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(listOfRoomsListLabel)
+                .addGap(251, 251, 251)
+                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(listOfRoomsListLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(listOfRoomsListLabel)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(logoutButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72)
@@ -136,6 +151,14 @@ public class UserFrame extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(frame, "Booking is submitted.");
             });
     }//GEN-LAST:event_submitBookingButtonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        this.dispose();
+        
+        java.awt.EventQueue.invokeLater(() -> {
+        new LoginFrame().setVisible(true);
+        });
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +201,7 @@ public class UserFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable5;
     private javax.swing.JLabel listOfRoomsListLabel;
+    private javax.swing.JButton logoutButton;
     private javax.swing.JButton submitBookingButton;
     // End of variables declaration//GEN-END:variables
 }

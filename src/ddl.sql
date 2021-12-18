@@ -1,6 +1,6 @@
+DROP TABLE IF EXISTS reservations;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS room;
-DROP TABLE IF EXISTS reservations;
 
 
 

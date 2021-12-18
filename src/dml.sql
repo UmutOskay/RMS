@@ -1,4 +1,4 @@
-INSERT INTO user(faculty_id,user_fullname,user_mail,user_password,is_admin,is_banned,banned_time,banned_at,time_slots_left)VALUES
+INSERT INTO user(faculty_id,user_fullname,user_mail,user_password,is_admin,is_banned,banned_at,time_slots_left)VALUES
 ('S017812','Sefa Yapici','sefa.yapici@ozu.edu.tr','dNKiZG8N3skhsdHA4SHynQ==',0,0,null,3), 		  	 /* password is user4234  */
 ('S017813','Umut Oskay','umut.oskay@ozu.edu.tr','BliIxTqWFO7ku5ZfxEFroA==',0,0,null,3),                       /* password is user1234  */
 ('S017815','Hasan Umut Suluhan','umut.suluhan@ozu.edu.tr','PfkVfvlBzhcBOOJiJvNvcg==',0,0,null,3),             /* password is user2234  */

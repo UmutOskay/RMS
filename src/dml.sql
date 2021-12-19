@@ -13,3 +13,4 @@ INSERT INTO room(room_id,room_location,is_available_at_08,is_available_at_09,is_
 (351,"AB3",1,1,1,1,1,1,1,1,1,1);
 
 #INSERT INTO reservations(student_id,room_id,time_slot,time_of_reservation)VALUES
+	

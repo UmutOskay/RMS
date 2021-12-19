@@ -35,8 +35,10 @@ CREATE TABLE IF NOT EXISTS reservations(
 	faculty_id VARCHAR(10) not null,
     room_id int not null,
     time_slot MEDIUMTEXT not null,
-    time_of_reservation DATETIME not null, 
+    time_of_reservation TIMESTAMP not null, 
+    reservation_timeslot TIMESTAMP not null,
     FOREIGN KEY (faculty_id) REFERENCES user(faculty_id),
     FOREIGN KEY (room_id) REFERENCES room(room_id)
+	
 );
 

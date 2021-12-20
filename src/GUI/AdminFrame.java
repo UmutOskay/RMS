@@ -30,21 +30,16 @@ public class AdminFrame extends UserFrame {
     private void initComponents() {
 
         banButton = new javax.swing.JButton();
-        submitBookingButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        banButton.setText("Ban A User");
+        banButton.setBackground(new java.awt.Color(255, 255, 51));
+        banButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        banButton.setText("Ban User");
         banButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 banButtonActionPerformed(evt);
-            }
-        });
-
-        submitBookingButton.setText("Submit Booking");
-        submitBookingButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitBookingButtonActionPerformed(evt);
             }
         });
 
@@ -53,19 +48,16 @@ public class AdminFrame extends UserFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(800, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(banButton, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(submitBookingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(27, 27, 27))
+                .addContainerGap(714, Short.MAX_VALUE)
+                .addComponent(banButton)
+                .addGap(157, 157, 157))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(banButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 433, Short.MAX_VALUE)
-                .addComponent(submitBookingButton))
+                .addContainerGap()
+                .addComponent(banButton)
+                .addContainerGap(548, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,14 +70,6 @@ public class AdminFrame extends UserFrame {
                 new BanFrame().setVisible(true);
             });
     }//GEN-LAST:event_banButtonActionPerformed
-
-    private void submitBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBookingButtonActionPerformed
-       
-        java.awt.EventQueue.invokeLater(() -> {
-               UserFrame frame = new UserFrame(); 
-               JOptionPane.showMessageDialog(frame, "Booking is submitted.");
-            });
-    }//GEN-LAST:event_submitBookingButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,6 +108,5 @@ public class AdminFrame extends UserFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton banButton;
-    private javax.swing.JButton submitBookingButton;
     // End of variables declaration//GEN-END:variables
 }

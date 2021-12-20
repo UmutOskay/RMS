@@ -124,13 +124,17 @@ public class LoginFrame extends javax.swing.JFrame {
             loginInfo.setText("Hello Admin");
             this.dispose();
             java.awt.EventQueue.invokeLater(() -> {
-                new AdminFrame().setVisible(true);
+               AdminFrame admin = new AdminFrame();
+               admin.setVisible(true);
+               admin.setUserIDInfo(enteredID);
             });
         }else if (enteredID.equals("USER") && enteredPassword.equals("USER")) {
             loginInfo.setText("Hello User");
             this.dispose();
             java.awt.EventQueue.invokeLater(() -> {
-                new UserFrame().setVisible(true);
+                UserFrame user = new UserFrame();
+                user.setVisible(true);
+                user.setUserIDInfo(enteredID);
             });
         }else{
             loginInfo.setText("Wrong Credientials");

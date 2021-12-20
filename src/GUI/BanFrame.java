@@ -38,7 +38,10 @@ public class BanFrame extends javax.swing.JFrame {
         banPanelLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(650, 300));
+        setResizable(false);
 
+        submitButton.setBackground(new java.awt.Color(153, 255, 153));
         submitButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         submitButton.setText("SUBMIT");
         submitButton.addActionListener(new java.awt.event.ActionListener() {

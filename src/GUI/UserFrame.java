@@ -32,10 +32,14 @@ public class UserFrame extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         submitBookingButton = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
         listOfRoomsListLabel = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        listOfRoomsListLabel1 = new javax.swing.JLabel();
+        listOfRoomsListLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        userIDInfo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(400, 300));
@@ -66,6 +70,7 @@ public class UserFrame extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable3);
         jTable3.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
+        submitBookingButton.setBackground(new java.awt.Color(153, 255, 153));
         submitBookingButton.setText("Submit My Booking");
         submitBookingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,12 +78,24 @@ public class UserFrame extends javax.swing.JFrame {
             }
         });
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        listOfRoomsListLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        listOfRoomsListLabel.setText("Today");
+
+        logoutButton.setBackground(new java.awt.Color(255, 0, 0));
+        logoutButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        logoutButton.setText("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Room 5", null, null, null, null, null, null, null, null, null, null, null},
-                {"Room 6", null, null, null, null, null, null, null, null, null, null, null},
-                {"Room 7", null, null, null, null, null, null, null, null, null, null, null},
-                {"Room 8", null, null, null, null, null, null, null, null, null, null, null}
+                {"Room 1", null,  new Boolean(false), null, null, null, null, null, null, null, null, null},
+                {"Room 2", null,  new Boolean(false), null, null, null, null, null, null, null, null, null},
+                {"Room 3", null,  new Boolean(false), null, null, null, null, null, null, null, null, null},
+                {"Room 4", null,  new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null}
             },
             new String [] {
                 "Rooms", "9:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00"
@@ -92,53 +109,85 @@ public class UserFrame extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable5.setRowHeight(20);
-        jScrollPane5.setViewportView(jTable5);
+        jTable4.setRowHeight(20);
+        jTable4.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(jTable4);
+        jTable4.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        listOfRoomsListLabel.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        listOfRoomsListLabel.setText("List of Rooms");
+        listOfRoomsListLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        listOfRoomsListLabel1.setText("Tomorrow");
 
-        logoutButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        logoutButton.setText("Logout");
-        logoutButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutButtonActionPerformed(evt);
-            }
-        });
+        listOfRoomsListLabel2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        listOfRoomsListLabel2.setText("List of Rooms");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("USER ID:");
+
+        userIDInfo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        userIDInfo.setText("USER ID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(448, 448, 448)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(listOfRoomsListLabel)
+                        .addGap(27, 27, 27))
+                    .addComponent(listOfRoomsListLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(listOfRoomsListLabel)
-                .addGap(251, 251, 251)
-                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(userIDInfo)
+                        .addGap(287, 287, 287)
+                        .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(66, 66, 66)
+                    .addComponent(listOfRoomsListLabel2)
+                    .addContainerGap(648, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(listOfRoomsListLabel)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(logoutButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                    .addComponent(logoutButton)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(userIDInfo)))
+                .addGap(125, 125, 125)
+                .addComponent(listOfRoomsListLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                .addComponent(listOfRoomsListLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(18, 18, 18)
                 .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(207, 207, 207)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(277, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(42, 42, 42)
+                    .addComponent(listOfRoomsListLabel2)
+                    .addContainerGap(500, Short.MAX_VALUE)))
         );
 
         pack();
@@ -196,12 +245,20 @@ public class UserFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable4;
     private javax.swing.JLabel listOfRoomsListLabel;
+    private javax.swing.JLabel listOfRoomsListLabel1;
+    private javax.swing.JLabel listOfRoomsListLabel2;
     private javax.swing.JButton logoutButton;
     private javax.swing.JButton submitBookingButton;
+    private javax.swing.JLabel userIDInfo;
     // End of variables declaration//GEN-END:variables
+
+    public void setUserIDInfo(String a){
+        this.userIDInfo.setText(a);
+    }
 }

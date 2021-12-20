@@ -54,6 +54,7 @@ public class BanFrame extends javax.swing.JFrame {
 
         bannedDaysLabel.setText("DAYS FOR BANNED:");
 
+        backButton.setBackground(new java.awt.Color(255, 255, 51));
         backButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         backButton.setText("<-- BACK");
         backButton.addActionListener(new java.awt.event.ActionListener() {

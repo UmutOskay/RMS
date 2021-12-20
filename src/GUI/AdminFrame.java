@@ -32,6 +32,7 @@ public class AdminFrame extends UserFrame {
         banButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(400, 300));
         setResizable(false);
 
         banButton.setBackground(new java.awt.Color(255, 255, 51));
@@ -57,7 +58,7 @@ public class AdminFrame extends UserFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(banButton)
-                .addContainerGap(548, Short.MAX_VALUE))
+                .addContainerGap(550, Short.MAX_VALUE))
         );
 
         pack();

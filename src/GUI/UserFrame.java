@@ -36,6 +36,7 @@ public class UserFrame extends javax.swing.JFrame {
         listOfRoomsListLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         userIDInfo = new javax.swing.JLabel();
+        cancelBookingButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(400, 300));
@@ -66,9 +67,9 @@ public class UserFrame extends javax.swing.JFrame {
                 {"Room 4", null,  new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null},
                 {"Room 5", null, null, null, null, null, null, null, null, null, null, null},
                 {"Room 6", null, null, null, null, null, null, null, null, null, null, null},
-                {"Room 7", null, null, null, null, null, null, null, null, null, null, null},
+                {"Room 7",  new Boolean(false), null, null, null, null, null, null, null, null, null, null},
                 {"Room 8", null, null, null, null, null, null, null, null, null, null, null},
-                {"Room 9", null, null, null, null, null, null, null, null, null, null, null},
+                {"Room 9", null, null, null, null, null, null,  new Boolean(false), null, null, null, null},
                 {"Room 10", null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
@@ -78,16 +79,35 @@ public class UserFrame extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true, true, true, true, true, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jTable4.setColumnSelectionAllowed(true);
         jTable4.setRowHeight(20);
         jTable4.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(jTable4);
-        jTable4.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        if (jTable4.getColumnModel().getColumnCount() > 0) {
+            jTable4.getColumnModel().getColumn(0).setResizable(false);
+            jTable4.getColumnModel().getColumn(1).setResizable(false);
+            jTable4.getColumnModel().getColumn(2).setResizable(false);
+            jTable4.getColumnModel().getColumn(3).setResizable(false);
+            jTable4.getColumnModel().getColumn(4).setResizable(false);
+            jTable4.getColumnModel().getColumn(5).setResizable(false);
+            jTable4.getColumnModel().getColumn(6).setResizable(false);
+            jTable4.getColumnModel().getColumn(7).setResizable(false);
+            jTable4.getColumnModel().getColumn(8).setResizable(false);
+            jTable4.getColumnModel().getColumn(9).setResizable(false);
+            jTable4.getColumnModel().getColumn(10).setResizable(false);
+            jTable4.getColumnModel().getColumn(11).setResizable(false);
+        }
 
         listOfRoomsListLabel2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         listOfRoomsListLabel2.setText("List of Rooms");
@@ -98,23 +118,32 @@ public class UserFrame extends javax.swing.JFrame {
         userIDInfo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         userIDInfo.setText("USER ID");
 
+        cancelBookingButton.setBackground(new java.awt.Color(255, 0, 0));
+        cancelBookingButton.setText("Cancel Reservation");
+        cancelBookingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBookingButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(423, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(userIDInfo)
-                        .addGap(287, 287, 287)
-                        .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userIDInfo)
+                .addGap(287, 287, 287)
+                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(cancelBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +162,9 @@ public class UserFrame extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addComponent(userIDInfo)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 442, Short.MAX_VALUE)
-                .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -165,6 +196,14 @@ public class UserFrame extends javax.swing.JFrame {
         new LoginFrame().setVisible(true);
         });
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void cancelBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBookingButtonActionPerformed
+
+        java.awt.EventQueue.invokeLater(() -> {
+            UserFrame frame = new UserFrame();
+            JOptionPane.showMessageDialog(frame, "Booking is cancelled.");
+        });
+    }//GEN-LAST:event_cancelBookingButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +241,7 @@ public class UserFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelBookingButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable4;

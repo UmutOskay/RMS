@@ -25,17 +25,12 @@ public class DisplayService {
 
     public ArrayList<User> displayUser() throws SQLException{
         ArrayList<User> users = new ArrayList<>();
-        PreparedStatement stmt = this.conn.prepareStatement("select * from user;");
+        PreparedStatement stmt = this.conn.prepareStatement("select faculty_id, user_fullname from user;");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()){
             User user = new User();
             user.setFaculty_id(rs.getString(1));
             user.setUser_full_name(rs.getString(2));
-            user.setUser_mail(rs.getString(3));
-            user.setUser_password(rs.getString(4));
-            user.setIs_admin(rs.getBoolean(5));
-            user.setIs_banned(rs.getBoolean(6));
-            user.setLeft_slots(rs.getInt(7));
             users.add(user);
         }
         return users;

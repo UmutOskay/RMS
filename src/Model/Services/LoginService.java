@@ -18,7 +18,6 @@ public class LoginService {
         this.stmt = jdbc_conn.getStmt();
     }
 
-
     // Below method returns -1 if user does not exist, returns 0 if user exists and is admin, returns 1 if user exists and not admin
     public int validate_user(String faculty_id, String password) throws SQLException {
         password = Salter.salt(password, "RMS");
@@ -33,5 +32,4 @@ public class LoginService {
         }
         return -1;
     }
-
 }

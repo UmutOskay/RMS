@@ -29,14 +29,10 @@ public class UserFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
         submitBookingButton = new javax.swing.JButton();
-        listOfRoomsListLabel = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
-        listOfRoomsListLabel1 = new javax.swing.JLabel();
         listOfRoomsListLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         userIDInfo = new javax.swing.JLabel();
@@ -45,31 +41,6 @@ public class UserFrame extends javax.swing.JFrame {
         setLocation(new java.awt.Point(400, 300));
         setResizable(false);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Room 1", null,  new Boolean(false), null, null, null, null, null, null, null, null, null},
-                {"Room 2", null,  new Boolean(false), null, null, null, null, null, null, null, null, null},
-                {"Room 3", null,  new Boolean(false), null, null, null, null, null, null, null, null, null},
-                {"Room 4", null,  new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Rooms", "9:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTable3.setColumnSelectionAllowed(true);
-        jTable3.setRowHeight(20);
-        jTable3.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(jTable3);
-        jTable3.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
         submitBookingButton.setBackground(new java.awt.Color(153, 255, 153));
         submitBookingButton.setText("Submit My Booking");
         submitBookingButton.addActionListener(new java.awt.event.ActionListener() {
@@ -77,9 +48,6 @@ public class UserFrame extends javax.swing.JFrame {
                 submitBookingButtonActionPerformed(evt);
             }
         });
-
-        listOfRoomsListLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        listOfRoomsListLabel.setText("Today");
 
         logoutButton.setBackground(new java.awt.Color(255, 0, 0));
         logoutButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -95,7 +63,13 @@ public class UserFrame extends javax.swing.JFrame {
                 {"Room 1", null,  new Boolean(false), null, null, null, null, null, null, null, null, null},
                 {"Room 2", null,  new Boolean(false), null, null, null, null, null, null, null, null, null},
                 {"Room 3", null,  new Boolean(false), null, null, null, null, null, null, null, null, null},
-                {"Room 4", null,  new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null}
+                {"Room 4", null,  new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null},
+                {"Room 5", null, null, null, null, null, null, null, null, null, null, null},
+                {"Room 6", null, null, null, null, null, null, null, null, null, null, null},
+                {"Room 7", null, null, null, null, null, null, null, null, null, null, null},
+                {"Room 8", null, null, null, null, null, null, null, null, null, null, null},
+                {"Room 9", null, null, null, null, null, null, null, null, null, null, null},
+                {"Room 10", null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
                 "Rooms", "9:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00"
@@ -109,13 +83,11 @@ public class UserFrame extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTable4.setColumnSelectionAllowed(true);
         jTable4.setRowHeight(20);
         jTable4.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(jTable4);
         jTable4.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-        listOfRoomsListLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        listOfRoomsListLabel1.setText("Tomorrow");
 
         listOfRoomsListLabel2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         listOfRoomsListLabel2.setText("List of Rooms");
@@ -130,28 +102,19 @@ public class UserFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(448, 448, 448)
+                .addContainerGap(423, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(listOfRoomsListLabel)
-                        .addGap(27, 27, 27))
-                    .addComponent(listOfRoomsListLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(userIDInfo)
                         .addGap(287, 287, 287)
                         .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,20 +132,14 @@ public class UserFrame extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(userIDInfo)))
-                .addGap(125, 125, 125)
-                .addComponent(listOfRoomsListLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
-                .addComponent(listOfRoomsListLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 442, Short.MAX_VALUE)
                 .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(64, 64, 64))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(207, 207, 207)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(277, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(157, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(42, 42, 42)
@@ -246,12 +203,8 @@ public class UserFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
-    private javax.swing.JLabel listOfRoomsListLabel;
-    private javax.swing.JLabel listOfRoomsListLabel1;
     private javax.swing.JLabel listOfRoomsListLabel2;
     private javax.swing.JButton logoutButton;
     private javax.swing.JButton submitBookingButton;

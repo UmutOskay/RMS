@@ -234,7 +234,107 @@ public class UpdateService {
         return 0; // means cancellation is submitted
     }
 
-    public int banUser(String faculty_id){
-        
+    public int banUser(String faculty_id,String banMessage)  throws SQLException  {
+        PreparedStatement stmt = this.conn.prepareStatement("select user_mail,is_banned from user where faculty_id=?");
+        stmt.setString(1, faculty_id);
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        String user_mail = rs.getString(1);
+        Boolean is_banned = rs.getBoolean(2);
+
+        if(is_banned){
+            System.out.println("The user is already banned");
+            return -1;
+        }
+        else{
+            stmt = this.conn.prepareStatement("update user set is_banned=TRUE where faculty_id=?");
+            stmt.setString(1, faculty_id);
+            stmt.executeUpdate();
+
+            Timestamp ban_time = new Timestamp(System.currentTimeMillis());
+
+            stmt = this.conn.prepareStatement("update user set banned_at=? where faculty_id=?");
+            stmt.setObject(1,ban_time);
+            stmt.setString(2, faculty_id);
+            stmt.executeUpdate();
+            try {
+                // Create a default MimeMessage object.
+                MimeMessage message = new MimeMessage(session);
+
+                // Set From: header field of the header.
+                message.setFrom(new InternetAddress("rmsinfo724@gmail.com"));
+
+                // Set To: header field of the header.
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(user_mail));
+
+                // Set Subject: header field
+                message.setSubject("Ban from Room Management System");
+
+                // Now set the actual message
+                message.setText(banMessage);
+
+                System.out.println("sending...");
+                // Send message
+                Transport.send(message);
+                System.out.println("Sent message successfully....");
+            } catch (MessagingException mex) {
+                mex.printStackTrace();
+            }
+            System.out.println("User is banned succesfully");
+            return 0;
+
+        }
+
     }
+    public int revokeBan(String faculty_id)  throws SQLException  {
+        PreparedStatement stmt = this.conn.prepareStatement("select user_mail,is_banned from user where faculty_id=?");
+        stmt.setString(1, faculty_id);
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        String user_mail = rs.getString(1);
+        Boolean is_banned = rs.getBoolean(2);
+
+        if(is_banned){
+            stmt = this.conn.prepareStatement("update user set is_banned=FALSE where faculty_id=?");
+            stmt.setString(1, faculty_id);
+            stmt.executeUpdate();
+
+            stmt = this.conn.prepareStatement("update user set banned_at=NULL where faculty_id=?");
+            stmt.setString(1, faculty_id);
+            stmt.executeUpdate();
+            try {
+                // Create a default MimeMessage object.
+                MimeMessage message = new MimeMessage(session);
+
+                // Set From: header field of the header.
+                message.setFrom(new InternetAddress("rmsinfo724@gmail.com"));
+
+                // Set To: header field of the header.
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(user_mail));
+
+                // Set Subject: header field
+                message.setSubject("Ban from Room Management System");
+
+                // Now set the actual message
+                message.setText(banMessage);
+
+                System.out.println("sending...");
+                // Send message
+                Transport.send(message);
+                System.out.println("Sent message successfully....");
+            } catch (MessagingException mex) {
+                mex.printStackTrace();
+            }
+            System.out.println("User's ban is revoked succesfully");
+            return 0;
+
+        }
+        else{
+            System.out.println("can't revoke a ban, the user is not banned at the moment.");
+            return -1;
+
+        }
+
+    }
+
 }

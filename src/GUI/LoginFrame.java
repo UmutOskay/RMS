@@ -5,17 +5,24 @@
  */
 package GUI;
 
+import Model.Services.LoginService;
+
+import java.sql.SQLException;
+
 /**
  *
  * @author muhse
  */
 public class LoginFrame extends javax.swing.JFrame {
 
+    private LoginService lg;
     /**
      * Creates new form MainFrame
      */
     public LoginFrame() {
         initComponents();
+        lg = new LoginService();
+
     }
 
     /**
@@ -53,7 +60,11 @@ public class LoginFrame extends javax.swing.JFrame {
         loginButton.setText("LOGIN");
         loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                loginButtonMousePressed(evt);
+                try {
+                    loginButtonMousePressed(evt);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -131,23 +142,34 @@ public class LoginFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMousePressed
+    private void loginButtonMousePressed(java.awt.event.MouseEvent evt) throws SQLException {//GEN-FIRST:event_loginButtonMousePressed
         // TODO add your handling code here:
         String enteredID = userID.getText();
         String enteredPassword = password.getText();
-        if (enteredID.equals("ADMIN") && enteredPassword.equals("ADMIN")) {
+        int user_type = lg.validate_user(enteredID, enteredPassword);
+        if (user_type == 0) {
             loginInfo.setText("Hello Admin");
             this.dispose();
             java.awt.EventQueue.invokeLater(() -> {
-               AdminFrame admin = new AdminFrame();
-               admin.setVisible(true);
+                AdminFrame admin = null;
+                try {
+                    admin = new AdminFrame();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                admin.setVisible(true);
                admin.setUserIDInfo(enteredID);
             });
-        }else if (enteredID.equals("USER") && enteredPassword.equals("USER")) {
+        }else if (user_type == 1) {
             loginInfo.setText("Hello User");
             this.dispose();
             java.awt.EventQueue.invokeLater(() -> {
-                UserFrame user = new UserFrame();
+                UserFrame user = null;
+                try {
+                    user = new UserFrame();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 user.setVisible(true);
                 user.setUserIDInfo(enteredID);
             });

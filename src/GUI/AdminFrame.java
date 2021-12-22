@@ -5,18 +5,21 @@
  */
 package GUI;
 
+import Model.Services.DisplayService;
+
 import javax.swing.JOptionPane;
+import java.sql.SQLException;
 
 /**
  *
  * @author muhse
  */
 public class AdminFrame extends UserFrame {
-
     /**
      * Creates new form AdminFrame
      */
-    public AdminFrame() {
+    public AdminFrame() throws SQLException {
+        super();
         initComponents();
     }
 
@@ -128,7 +131,11 @@ public class AdminFrame extends UserFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminFrame().setVisible(true);
+                try {
+                    new AdminFrame().setVisible(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

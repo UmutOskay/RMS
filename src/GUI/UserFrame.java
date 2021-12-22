@@ -5,18 +5,31 @@
  */
 package GUI;
 
+import Model.Object.Room;
+import Model.Services.DisplayService;
+import Model.Services.UpdateService;
+
 import javax.swing.JOptionPane;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
  * @author muhse
  */
 public class UserFrame extends javax.swing.JFrame {
-
+    private DisplayService ds;
+    private UpdateService us;
+    private ArrayList<Room> rooms;
+    private Object[][] room_array;
     /**
      * Creates new form UserFrame
      */
-    public UserFrame() {
+    public UserFrame() throws SQLException {
+        this.ds = new DisplayService();
+        this.us = new UpdateService();
+        this.rooms = this.ds.displayRoom();
+        this.room_array = transformation();
         initComponents();
     }
 
@@ -27,7 +40,7 @@ public class UserFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() throws SQLException {
 
         submitBookingButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
@@ -45,9 +58,7 @@ public class UserFrame extends javax.swing.JFrame {
         submitBookingButton.setBackground(new java.awt.Color(153, 255, 153));
         submitBookingButton.setText("Submit My Booking");
         submitBookingButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitBookingButtonActionPerformed(evt);
-            }
+            public void actionPerformed(java.awt.event.ActionEvent evt) {submitBookingButtonActionPerformed(evt);}
         });
 
         logoutButton.setBackground(new java.awt.Color(255, 0, 0));
@@ -59,21 +70,12 @@ public class UserFrame extends javax.swing.JFrame {
             }
         });
 
+
+
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Room 1", null,  new Boolean(false), null, null, null, null, null, null, null, null, null},
-                {"Room 2", null,  new Boolean(false), null, null, null, null, null, null, null, null, null},
-                {"Room 3", null,  new Boolean(false), null, null, null, null, null, null, null, null, null},
-                {"Room 4", null,  new Boolean(false),  new Boolean(false), null, null, null, null, null, null, null, null},
-                {"Room 5", null, null, null, null, null, null, null, null, null, null, null},
-                {"Room 6", null, null, null, null, null, null, null, null, null, null, null},
-                {"Room 7",  new Boolean(false), null, null, null, null, null, null, null, null, null, null},
-                {"Room 8", null, null, null, null, null, null, null, null, null, null, null},
-                {"Room 9", null, null, null, null, null, null,  new Boolean(false), null, null, null, null},
-                {"Room 10", null, null, null, null, null, null, null, null, null, null, null}
-            },
+            this.room_array,
             new String [] {
-                "Rooms", "9:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00"
+                "Rooms", "08:00:09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00"
             }
         ) {
             Class[] types = new Class [] {
@@ -184,8 +186,14 @@ public class UserFrame extends javax.swing.JFrame {
     private void submitBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBookingButtonActionPerformed
   
         java.awt.EventQueue.invokeLater(() -> {
-               UserFrame frame = new UserFrame(); 
-               JOptionPane.showMessageDialog(frame, "Booking is submitted.");
+            UserFrame frame = null;
+            try {
+                frame = new UserFrame();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            // this.userIDInfo.getText() for user id
+            JOptionPane.showMessageDialog(frame, "Booking is submitted.");
             });
     }//GEN-LAST:event_submitBookingButtonActionPerformed
 
@@ -200,10 +208,33 @@ public class UserFrame extends javax.swing.JFrame {
     private void cancelBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBookingButtonActionPerformed
 
         java.awt.EventQueue.invokeLater(() -> {
-            UserFrame frame = new UserFrame();
+            UserFrame frame = null;
+            try {
+                frame = new UserFrame();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             JOptionPane.showMessageDialog(frame, "Booking is cancelled.");
         });
     }//GEN-LAST:event_cancelBookingButtonActionPerformed
+
+    private Object[][] transformation(){
+        Object [][] room_array = new Object[this.rooms.size()][this.rooms.get(0).getSize() - 1];
+        for(int i = 0; i < this.rooms.size(); i++){
+            room_array[i][0] = this.rooms.get(i).getRoom_id() + "(" + this.rooms.get(i).getRoom_location()  + ")";
+            room_array[i][1] = this.rooms.get(i).isIs_available_at_08();
+            room_array[i][2] = this.rooms.get(i).isIs_available_at_09();
+            room_array[i][3] = this.rooms.get(i).isIs_available_at_10();
+            room_array[i][4] = this.rooms.get(i).isIs_available_at_11();
+            room_array[i][5] = this.rooms.get(i).isIs_available_at_12();
+            room_array[i][6] = this.rooms.get(i).isIs_available_at_13();
+            room_array[i][7] = this.rooms.get(i).isIs_available_at_14();
+            room_array[i][8] = this.rooms.get(i).isIs_available_at_15();
+            room_array[i][9] = this.rooms.get(i).isIs_available_at_16();
+            room_array[i][10] = this.rooms.get(i).isIs_available_at_17();
+        }
+        return room_array;
+    }
 
     /**
      * @param args the command line arguments
@@ -235,7 +266,11 @@ public class UserFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserFrame().setVisible(true);
+                try {
+                    new UserFrame().setVisible(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

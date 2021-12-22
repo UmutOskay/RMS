@@ -5,14 +5,16 @@
  */
 package GUI;
 
+import Model.Services.UpdateService;
+
 import javax.swing.JOptionPane;
+import java.sql.SQLException;
 
 /**
  *
  * @author muhse
  */
 public class BanFrame extends javax.swing.JFrame {
-
     /**
      * Creates new form BanFrame
      */
@@ -50,9 +52,9 @@ public class BanFrame extends javax.swing.JFrame {
             }
         });
 
-        usernameLabel.setText("USERNAME:");
+        usernameLabel.setText("Faculty ID:");
 
-        bannedDaysLabel.setText("DAYS FOR BANNED:");
+        bannedDaysLabel.setText("Ban Duration:");
 
         backButton.setBackground(new java.awt.Color(255, 255, 51));
         backButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -153,8 +155,12 @@ public class BanFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         java.awt.EventQueue.invokeLater(() -> {
+            try {
                 new AdminFrame().setVisible(true);
-            });
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed

@@ -234,7 +234,7 @@ public class UpdateService {
         return 0; // means cancellation is submitted
     }
 
-    public int banUser(String faculty_id,String banMessage)  throws SQLException  {
+    public int banUser(String faculty_id,String ban_duration)  throws SQLException  {
         PreparedStatement stmt = this.conn.prepareStatement("select user_mail,is_banned from user where faculty_id=?");
         stmt.setString(1, faculty_id);
         ResultSet rs = stmt.executeQuery();
@@ -251,12 +251,25 @@ public class UpdateService {
             stmt.setString(1, faculty_id);
             stmt.executeUpdate();
 
-            Timestamp ban_time = new Timestamp(System.currentTimeMillis());
+            Timestamp bannedUntil = new Timestamp(System.currentTimeMillis());
 
-            stmt = this.conn.prepareStatement("update user set banned_at=? where faculty_id=?");
-            stmt.setObject(1,ban_time);
+            System.out.println(bannedUntil);
+
+            int currentDay = bannedUntil.getDate();
+            int banDurationAsInt = Integer.parseInt(ban_duration);
+            System.out.println(currentDay);
+            System.out.println(banDurationAsInt);
+            bannedUntil.setDate(currentDay + banDurationAsInt);
+
+            System.out.println(bannedUntil);
+
+
+            stmt = this.conn.prepareStatement("update user set banned_until=? where faculty_id=?");
+            stmt.setObject(1,bannedUntil);
             stmt.setString(2, faculty_id);
             stmt.executeUpdate();
+
+
             try {
                 // Create a default MimeMessage object.
                 MimeMessage message = new MimeMessage(session);
@@ -271,7 +284,7 @@ public class UpdateService {
                 message.setSubject("Ban from Room Management System");
 
                 // Now set the actual message
-                message.setText(banMessage);
+                message.setText("You have been banned from RMS for " + ban_duration + " Days");
 
                 System.out.println("sending...");
                 // Send message
@@ -316,7 +329,7 @@ public class UpdateService {
                 message.setSubject("Ban from Room Management System");
 
                 // Now set the actual message
-                message.setText(banMessage);
+                message.setText("Your ban has been revoked");
 
                 System.out.println("sending...");
                 // Send message

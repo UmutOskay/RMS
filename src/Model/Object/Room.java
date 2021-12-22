@@ -131,4 +131,8 @@ public class Room {
                 ", is_available_at_17=" + is_available_at_17 +
                 '}';
     }
+
+    public int getSize(){
+        return 12;
+    }
 }

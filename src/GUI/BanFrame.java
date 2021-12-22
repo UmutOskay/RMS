@@ -15,10 +15,12 @@ import java.sql.SQLException;
  * @author muhse
  */
 public class BanFrame extends javax.swing.JFrame {
+    private UpdateService us;
     /**
      * Creates new form BanFrame
      */
     public BanFrame() {
+        this.us = new UpdateService();
         initComponents();
     }
 
@@ -145,7 +147,13 @@ public class BanFrame extends javax.swing.JFrame {
         else{
         java.awt.EventQueue.invokeLater(() -> {
             BanFrame frame = new BanFrame();
-            JOptionPane.showMessageDialog(frame, "User " + enteredId + " is banned for " + amountOfBannedDays + " days." );
+            try {
+                int return_message = us.banUser(enteredId, amountOfBannedDays);
+                if(return_message == -1)JOptionPane.showMessageDialog(frame, "The user is already banned.");
+                else if(return_message == 0)JOptionPane.showMessageDialog(frame, "User " + enteredId + " is banned for " + amountOfBannedDays + " days." );
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             });
         }
                          
@@ -211,4 +219,3 @@ public class BanFrame extends javax.swing.JFrame {
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
-}

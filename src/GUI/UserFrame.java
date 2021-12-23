@@ -40,7 +40,7 @@ public class UserFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() throws SQLException {
+    private void initComponents() {
 
         submitBookingButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
@@ -58,7 +58,9 @@ public class UserFrame extends javax.swing.JFrame {
         submitBookingButton.setBackground(new java.awt.Color(153, 255, 153));
         submitBookingButton.setText("Submit My Booking");
         submitBookingButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {submitBookingButtonActionPerformed(evt);}
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBookingButtonActionPerformed(evt);
+            }
         });
 
         logoutButton.setBackground(new java.awt.Color(255, 0, 0));
@@ -70,19 +72,28 @@ public class UserFrame extends javax.swing.JFrame {
             }
         });
 
-
-
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            this.room_array,
+            new Object [][] {
+                {"Room 1", null, null,  new Boolean(false), null, null, null, null, null, null, null},
+                {"Room 2", null, null,  new Boolean(false), null, null, null, null, null, null, null},
+                {"Room 3", null, null,  new Boolean(false), null, null, null, null, null, null, null},
+                {"Room 4", null, null,  new Boolean(false),  new Boolean(false), null, null, null, null, null, null},
+                {"Room 5", null, null, null, null, null, null, null, null, null, null},
+                {"Room 6", null, null, null, null, null, null, null, null, null, null},
+                {"Room 7", null,  new Boolean(false), null, null, null, null, null, null, null, null},
+                {"Room 8", null, null, null, null, null, null, null, null, null, null},
+                {"Room 9", null, null, null, null, null, null, null,  new Boolean(false), null, null},
+                {"Room 10", null, null, null, null, null, null, null, null, null, null}
+            },
             new String [] {
-                "Rooms", "08:00:09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00"
+                "Rooms", "8:00-9:00", "9:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true, true, true
+                false, true, true, true, true, true, true, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -108,7 +119,6 @@ public class UserFrame extends javax.swing.JFrame {
             jTable4.getColumnModel().getColumn(8).setResizable(false);
             jTable4.getColumnModel().getColumn(9).setResizable(false);
             jTable4.getColumnModel().getColumn(10).setResizable(false);
-            jTable4.getColumnModel().getColumn(11).setResizable(false);
         }
 
         listOfRoomsListLabel2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N

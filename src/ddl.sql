@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS user(
     is_admin BOOLEAN not null,
     is_banned BOOLEAN not null,
     time_slots_left int not null,
-    banned_at date, 
+    banned_until date, 
     PRIMARY KEY (faculty_id)
     );
 CREATE TABLE IF NOT EXISTS room(

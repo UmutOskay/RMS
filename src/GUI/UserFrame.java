@@ -229,7 +229,7 @@ public class UserFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBookingButtonActionPerformed
 
     private Object[][] transformation(){
-        Object [][] room_array = new Object[this.rooms.size()][this.rooms.get(0).getSize() - 1];
+        Object [][] room_array = new Object[this.rooms.size()][this.rooms.get(0).getSize()];
         for(int i = 0; i < this.rooms.size(); i++){
             room_array[i][0] = this.rooms.get(i).getRoom_id() + "(" + this.rooms.get(i).getRoom_location()  + ")";
             room_array[i][1] = this.rooms.get(i).isIs_available_at_08();

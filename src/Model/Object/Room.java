@@ -133,6 +133,6 @@ public class Room {
     }
 
     public int getSize(){
-        return 12;
+        return 11;
     }
 }

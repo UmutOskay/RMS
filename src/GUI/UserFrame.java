@@ -73,18 +73,7 @@ public class UserFrame extends javax.swing.JFrame {
         });
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Room 1", null, null,  new Boolean(false), null, null, null, null, null, null, null},
-                {"Room 2", null, null,  new Boolean(false), null, null, null, null, null, null, null},
-                {"Room 3", null, null,  new Boolean(false), null, null, null, null, null, null, null},
-                {"Room 4", null, null,  new Boolean(false),  new Boolean(false), null, null, null, null, null, null},
-                {"Room 5", null, null, null, null, null, null, null, null, null, null},
-                {"Room 6", null, null, null, null, null, null, null, null, null, null},
-                {"Room 7", null,  new Boolean(false), null, null, null, null, null, null, null, null},
-                {"Room 8", null, null, null, null, null, null, null, null, null, null},
-                {"Room 9", null, null, null, null, null, null, null,  new Boolean(false), null, null},
-                {"Room 10", null, null, null, null, null, null, null, null, null, null}
-            },
+            this.room_array,
             new String [] {
                 "Rooms", "8:00-9:00", "9:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00"
             }
@@ -107,19 +96,6 @@ public class UserFrame extends javax.swing.JFrame {
         jTable4.setRowHeight(20);
         jTable4.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(jTable4);
-        if (jTable4.getColumnModel().getColumnCount() > 0) {
-            jTable4.getColumnModel().getColumn(0).setResizable(false);
-            jTable4.getColumnModel().getColumn(1).setResizable(false);
-            jTable4.getColumnModel().getColumn(2).setResizable(false);
-            jTable4.getColumnModel().getColumn(3).setResizable(false);
-            jTable4.getColumnModel().getColumn(4).setResizable(false);
-            jTable4.getColumnModel().getColumn(5).setResizable(false);
-            jTable4.getColumnModel().getColumn(6).setResizable(false);
-            jTable4.getColumnModel().getColumn(7).setResizable(false);
-            jTable4.getColumnModel().getColumn(8).setResizable(false);
-            jTable4.getColumnModel().getColumn(9).setResizable(false);
-            jTable4.getColumnModel().getColumn(10).setResizable(false);
-        }
 
         listOfRoomsListLabel2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         listOfRoomsListLabel2.setText("List of Rooms");

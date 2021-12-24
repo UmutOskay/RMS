@@ -44,16 +44,16 @@ public class test {
             System.out.println(item);
         }
 
-        /*us.reservation("F000034", 241, "8-9");
-        us.reservation("F000034", 242, "8-9");
+        //us.reservation("F000034", 241, "8-9");
+        //us.reservation("F000034", 242, "8-9");
         us.reservation("S017815", 242, "9-10");
         //us.reservation("S017815", 103, "10-11");
         //us.reservation("S017815", 351, "11-12");
         //us.reservation("S017815", 104, "12-13");
-        us.cancellation("S017815", 242, "9-10");
+        //us.cancellation("S017815", 242, "9-10");
 
-         */
-        us.banUser("S017815", "7");
+
+        //us.banUser("S017815", "7");
         //us.revokeBan("S017815");
     }
 }

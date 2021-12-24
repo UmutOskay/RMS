@@ -133,7 +133,7 @@ public class UpdateService {
 
         time_slot_to_remove = "is_available_at_" + time_slot_to_remove;
 
-        stmt = this.conn.prepareStatement("update room set " + time_slot_to_remove  + "= False where room_id=?" );
+        stmt = this.conn.prepareStatement("update room set " + time_slot_to_remove  + "= True where room_id=?" );
         stmt.setInt(1, room_id);
         stmt.executeUpdate();
         // did not change room information yet

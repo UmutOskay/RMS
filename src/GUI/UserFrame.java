@@ -222,7 +222,11 @@ public class UserFrame extends javax.swing.JFrame {
     private void cancelBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBookingButtonActionPerformed
 
         java.awt.EventQueue.invokeLater(() -> {
-            new CancelFrame().setVisible(true);
+            try {
+                new CancelFrame(this.userIDInfo.getText()).setVisible(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         });
     }//GEN-LAST:event_cancelBookingButtonActionPerformed
 

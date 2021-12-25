@@ -72,4 +72,17 @@ public class DisplayService {
         }
         return reservations;
     }
+    public ArrayList<Reservation> displayUserReservations(String faculty_id) throws SQLException{
+        ArrayList<Reservation> userReservations = new ArrayList<>();
+        PreparedStatement stmt = this.conn.prepareStatement("select room_id,time_slot from reservations where faculty_id=?;");
+        stmt.setString(1,faculty_id);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()){
+            Reservation reservation = new Reservation();
+            reservation.setRoom_id(rs.getInt(1));
+            reservation.setTime_slot(rs.getString(2));
+            userReservations.add(reservation);
+        }
+        return userReservations;
+    }
 }

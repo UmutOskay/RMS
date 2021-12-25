@@ -5,16 +5,30 @@
  */
 package GUI;
 
+import Model.Object.Reservation;
+import Model.Services.DisplayService;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author muhse
  */
 public class CancelFrame extends javax.swing.JFrame {
+    private ArrayList<Reservation> userReservations;
+    private DisplayService ds;
+    private String faculty_id; // get from where?
+    private Object[][] userReservationsArray;
 
     /**
      * Creates new form CancelFrame
      */
-    public CancelFrame() {
+    public CancelFrame(String faculty_id) throws SQLException {
+        this.ds = new DisplayService();
+        this.userReservations = ds.displayUserReservations(faculty_id);
+        this.userReservationsArray = transformation();
+        this.faculty_id = faculty_id;
         initComponents();
     }
 
@@ -36,11 +50,7 @@ public class CancelFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null}
-            },
+            this.userReservationsArray,
             new String [] {
                 "Room ID", "Time Slot"
             }
@@ -154,12 +164,27 @@ public class CancelFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            private String faculty_id;
+
             public void run() {
-                new CancelFrame().setVisible(true);
+                try {
+                    new CancelFrame(this.faculty_id).setVisible(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
+    private Object[][] transformation(){
+        Object [][] userReservationArray = new Object[this.userReservations.size()][2];
+        for(int i = 0; i < this.userReservations.size(); i++){
+            userReservationArray[i][0] = this.userReservations.get(i).getRoom_id();
+            userReservationArray[i][1] = this.userReservations.get(i).getTime_slot();
 
+
+        }
+        return userReservationArray;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton1;
     private javax.swing.JButton cancelButton2;

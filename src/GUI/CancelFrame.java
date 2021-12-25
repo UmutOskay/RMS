@@ -7,6 +7,7 @@ package GUI;
 
 import Model.Object.Reservation;
 import Model.Services.DisplayService;
+import Model.Services.UpdateService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,8 +20,8 @@ public class CancelFrame extends javax.swing.JFrame {
     private ArrayList<Reservation> userReservations;
     private DisplayService ds;
     private String faculty_id; // get from where?
-    private Object[][] userReservationsArray;
-
+    private String[][] userReservationsArray;
+    private UpdateService us;
     /**
      * Creates new form CancelFrame
      */
@@ -29,6 +30,7 @@ public class CancelFrame extends javax.swing.JFrame {
         this.userReservations = ds.displayUserReservations(faculty_id);
         this.userReservationsArray = transformation();
         this.faculty_id = faculty_id;
+        this.us = new UpdateService();
         initComponents();
     }
 
@@ -75,21 +77,33 @@ public class CancelFrame extends javax.swing.JFrame {
         cancelButton1.setText("CANCEL-->");
         cancelButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButton1ActionPerformed(evt);
+                try {
+                    cancelButton1ActionPerformed(evt);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         cancelButton2.setText("CANCEL-->");
         cancelButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButton2ActionPerformed(evt);
+                try {
+                    cancelButton2ActionPerformed(evt);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         cancelButton3.setText("CANCEL-->");
         cancelButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButton3ActionPerformed(evt);
+                try {
+                    cancelButton3ActionPerformed(evt);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -123,16 +137,31 @@ public class CancelFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cancelButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButton1ActionPerformed
+    private void cancelButton1ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_cancelButton1ActionPerformed
         // TODO add your handling code here:
+        String room_id = userReservationsArray[0][0];
+        String time_slot = userReservationsArray[0][1];
+
+        us.cancellation(faculty_id,Integer.parseInt(room_id),time_slot);
+
     }//GEN-LAST:event_cancelButton1ActionPerformed
 
-    private void cancelButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButton2ActionPerformed
+    private void cancelButton2ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_cancelButton2ActionPerformed
         // TODO add your handling code here:
+        String room_id = userReservationsArray[1][0];
+        String time_slot = userReservationsArray[1][1];
+
+        us.cancellation(faculty_id,Integer.parseInt(room_id),time_slot);
+
     }//GEN-LAST:event_cancelButton2ActionPerformed
 
-    private void cancelButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButton3ActionPerformed
+    private void cancelButton3ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_cancelButton3ActionPerformed
         // TODO add your handling code here:
+        String room_id = userReservationsArray[2][0];
+        String time_slot = userReservationsArray[2][1];
+
+        us.cancellation(faculty_id,Integer.parseInt(room_id),time_slot);
+
     }//GEN-LAST:event_cancelButton3ActionPerformed
 
     /**
@@ -175,10 +204,10 @@ public class CancelFrame extends javax.swing.JFrame {
             }
         });
     }
-    private Object[][] transformation(){
-        Object [][] userReservationArray = new Object[this.userReservations.size()][2];
+    private String[][] transformation(){
+        String [][] userReservationArray = new String[this.userReservations.size()][2];
         for(int i = 0; i < this.userReservations.size(); i++){
-            userReservationArray[i][0] = this.userReservations.get(i).getRoom_id();
+            userReservationArray[i][0] = Integer.toString(this.userReservations.get(i).getRoom_id());
             userReservationArray[i][1] = this.userReservations.get(i).getTime_slot();
 
 

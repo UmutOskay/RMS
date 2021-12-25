@@ -128,29 +128,27 @@ public class BanFrame extends javax.swing.JFrame {
         
         if(enteredId.equals("") && amountOfBannedDays.equals("")) {
             java.awt.EventQueue.invokeLater(() -> {
-            BanFrame frame = new BanFrame();
-            JOptionPane.showMessageDialog(frame, "Please enter username and amount of days for banned." );
+            JOptionPane.showMessageDialog(this, "Please enter username and amount of days for banned." );
             });
         }
         else if(amountOfBannedDays.equals("")) {
             java.awt.EventQueue.invokeLater(() -> {
             BanFrame frame = new BanFrame();
-            JOptionPane.showMessageDialog(frame, "Please enter amount of days for banned." );
+            JOptionPane.showMessageDialog(this, "Please enter amount of days for banned." );
             });
         }
         else if(enteredId.equals("")) {
             java.awt.EventQueue.invokeLater(() -> {
             BanFrame frame = new BanFrame();
-            JOptionPane.showMessageDialog(frame, "Please enter a username." );
+            JOptionPane.showMessageDialog(this, "Please enter a username." );
             });    
         }
         else{
         java.awt.EventQueue.invokeLater(() -> {
-            BanFrame frame = new BanFrame();
             try {
                 int return_message = us.banUser(enteredId, amountOfBannedDays);
-                if(return_message == -1)JOptionPane.showMessageDialog(frame, "The user is already banned.");
-                else if(return_message == 0)JOptionPane.showMessageDialog(frame, "User " + enteredId + " is banned for " + amountOfBannedDays + " days." );
+                if(return_message == -1)JOptionPane.showMessageDialog(this, "The user is already banned.");
+                else if(return_message == 0)JOptionPane.showMessageDialog(this, "User " + enteredId + " is banned for " + amountOfBannedDays + " days." );
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -162,13 +160,7 @@ public class BanFrame extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        java.awt.EventQueue.invokeLater(() -> {
-            try {
-                new AdminFrame().setVisible(true);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        });
+        
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed

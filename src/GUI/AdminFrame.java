@@ -35,6 +35,7 @@ public class AdminFrame extends UserFrame {
         banButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        usersButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(400, 300));
@@ -59,26 +60,39 @@ public class AdminFrame extends UserFrame {
             }
         });
 
+        usersButton.setBackground(new java.awt.Color(255, 255, 51));
+        usersButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        usersButton.setText("Users");
+        usersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usersButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(banButton)
-                .addGap(157, 157, 157))
             .addGroup(layout.createSequentialGroup()
                 .addGap(300, 300, 300)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(299, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(usersButton)
+                .addGap(74, 74, 74)
+                .addComponent(banButton)
+                .addGap(157, 157, 157))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(banButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(banButton)
+                    .addComponent(usersButton))
                 .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -91,7 +105,6 @@ public class AdminFrame extends UserFrame {
 
     private void banButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_banButtonActionPerformed
         // TODO add your handling code here:
-        this.dispose();
         java.awt.EventQueue.invokeLater(() -> {
                 new BanFrame().setVisible(true);
             });
@@ -100,6 +113,12 @@ public class AdminFrame extends UserFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void usersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersButtonActionPerformed
+        java.awt.EventQueue.invokeLater(() -> {
+                new UserInfoFrame().setVisible(true);
+            });
+    }//GEN-LAST:event_usersButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,5 +163,6 @@ public class AdminFrame extends UserFrame {
     private javax.swing.JButton banButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton usersButton;
     // End of variables declaration//GEN-END:variables
 }

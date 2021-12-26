@@ -5,10 +5,12 @@ public class User {
     private String faculty_id;
     private String user_full_name;
     private String user_mail;
-    private String user_password;
     private boolean is_admin;
     private boolean is_banned;
     private int left_slots;
+    private String banned_until;
+
+
 
     public User(){}
 
@@ -36,14 +38,6 @@ public class User {
         this.user_mail = user_mail;
     }
 
-    public String getUser_password() {
-        return user_password;
-    }
-
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
-    }
-
     public boolean isIs_admin() {
         return is_admin;
     }
@@ -68,16 +62,24 @@ public class User {
         this.left_slots = left_slots;
     }
 
+    public String getBanned_until() {
+        return banned_until;
+    }
+
+    public void setBanned_until(String banned_until) {
+        this.banned_until = banned_until;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "faculty_id='" + faculty_id + '\'' +
                 ", user_full_name='" + user_full_name + '\'' +
                 ", user_mail='" + user_mail + '\'' +
-                ", user_password='" + user_password + '\'' +
                 ", is_admin=" + is_admin +
                 ", is_banned=" + is_banned +
                 ", left_slots=" + left_slots +
+                ", banned_until='" + banned_until + '\'' +
                 '}';
     }
 }

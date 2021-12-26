@@ -9,11 +9,6 @@ import java.security.spec.KeySpec;
 import java.util.Base64;
 
 public class Salter {
-    public static void main(String[] args)
-    {
-        System.out.println(">: " + salt("user4234", "RMS"));
-    }
-
     public static String salt(String A, String B)
     {
         byte[] hash = new byte[0];

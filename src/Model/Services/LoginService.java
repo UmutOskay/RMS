@@ -32,17 +32,4 @@ public class LoginService {
         }
         return -1;
     }
-
-    public int is_admin(String faculty_id) throws SQLException {
-        faculty_id = faculty_id.toUpperCase();
-        PreparedStatement stmt = this.conn.prepareStatement("select is_admin from user where faculty_id=?");
-        stmt.setString(1, faculty_id);
-        ResultSet rs = stmt.executeQuery();
-        if(rs.next()) {
-            if(rs.getBoolean(1)) return 1;
-            else return 0;
-        }
-        return -1;
-    }
-
 }

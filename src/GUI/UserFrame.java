@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- *
  * @author muhse
  */
 public class UserFrame extends javax.swing.JFrame {
@@ -28,6 +27,7 @@ public class UserFrame extends javax.swing.JFrame {
     private ArrayList<Room> rooms;
     private Object[][] room_array;
     private String[] time_slots;
+
     /**
      * Creates new form UserFrame
      */
@@ -37,7 +37,7 @@ public class UserFrame extends javax.swing.JFrame {
         this.us = new UpdateService();
         this.rooms = this.ds.displayRoom();
         this.room_array = transformation();
-        time_slots = new String [] {
+        time_slots = new String[]{
                 "Rooms", "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00"};
         initComponents();
     }
@@ -68,11 +68,11 @@ public class UserFrame extends javax.swing.JFrame {
         submitBookingButton.setText("Submit My Booking");
         submitBookingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-				try {
-					submitBookingButtonActionPerformed(evt);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+                try {
+                    submitBookingButtonActionPerformed(evt);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -86,24 +86,24 @@ public class UserFrame extends javax.swing.JFrame {
         });
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            this.room_array,
-            new String [] {
-                "Rooms", "8:00-9:00", "9:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00"
-            }
+                this.room_array,
+                new String[]{
+                        "Rooms", "8:00-9:00", "9:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00"
+                }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
+            Class[] types = new Class[]{
+                    java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true, true
+            boolean[] canEdit = new boolean[]{
+                    false, true, true, true, true, true, true, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jTable4.setRowHeight(20);
@@ -130,117 +130,86 @@ public class UserFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(128, 128, 128)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(userIDInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(cancelBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 474, Short.MAX_VALUE)
-                .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(66, 66, 66)
-                    .addComponent(listOfRoomsListLabel2)
-                    .addContainerGap(648, Short.MAX_VALUE)))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(128, 128, 128)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(userIDInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(cancelBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 474, Short.MAX_VALUE)
+                                .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                        .addGap(66, 66, 66)
+                                        .addComponent(listOfRoomsListLabel2)
+                                        .addContainerGap(648, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logoutButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(userIDInfo)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 442, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(207, 207, 207)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(157, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(42, 42, 42)
-                    .addComponent(listOfRoomsListLabel2)
-                    .addContainerGap(500, Short.MAX_VALUE)))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(logoutButton)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel1)
+                                                .addComponent(userIDInfo)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 442, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(submitBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cancelBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(64, 64, 64))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                        .addGap(207, 207, 207)
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap(157, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                        .addGap(42, 42, 42)
+                                        .addComponent(listOfRoomsListLabel2)
+                                        .addContainerGap(500, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
-
     private void submitBookingButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_submitBookingButtonActionPerformed
         java.awt.EventQueue.invokeLater(() -> {
-
-            int is_admin = 0;
+            UserFrame frame = this;
+            int return_type = 0;
+            int[] row_selection = jTable4.getSelectedRows();
+            int[] column_selection = jTable4.getSelectedColumns();
+            String faculty_id = this.userIDInfo.getText();
+            int room_id = Integer.parseInt(this.room_array[row_selection[0]][0].toString().substring(0, 3));
+            String time_slot = this.time_slots[column_selection[0]].substring(0, 2) + "-" + this.time_slots[column_selection[0]].substring(6, 8);
             try {
-                is_admin = this.ls.is_admin(this.userIDInfo.getText());
+                return_type = us.reservation(faculty_id, room_id, time_slot);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            if (return_type == -1) JOptionPane.showMessageDialog(frame, "Room is already reserved.");
+            else if (return_type == -2)
+                JOptionPane.showMessageDialog(frame, "You have already reserved a room in same time slot.");
+            else if (return_type == -3) JOptionPane.showMessageDialog(frame, "You have already reserved for 3 hours.");
+            else JOptionPane.showMessageDialog(frame, "Your booking is submitted.");
+            try {
+                frame = new UserFrame();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
-            if(is_admin == 1){
-                UserFrame frame = this;
-                int return_type = 0;
-                int [] row_selection = jTable4.getSelectedRows();
-                int [] column_selection = jTable4.getSelectedColumns();
-                String faculty_id = this.userIDInfo.getText();
-                int room_id = Integer.parseInt(this.room_array[row_selection[0]][0].toString().substring(0, 3));
-                String time_slot = this.time_slots[column_selection[0]].substring(0,2) + "-" + this.time_slots[column_selection[0]].substring(6,8);
-                try {
-                    return_type = us.reservation(faculty_id, room_id, time_slot);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                if(return_type == -1) JOptionPane.showMessageDialog(frame, "Room is already reserved.");
-                else if(return_type == -2) JOptionPane.showMessageDialog(frame, "You have already reserved a room in same time slot.");
-                else if(return_type == -3) JOptionPane.showMessageDialog(frame, "You have already reserved for 3 hours.");
-                else JOptionPane.showMessageDialog(frame, "Your booking is submitted.");
-                try {
-                    frame = new UserFrame();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }else{
-                UserFrame frame = this;
-                int return_type = 0;
-                int [] row_selection = jTable4.getSelectedRows();
-                int [] column_selection = jTable4.getSelectedColumns();
-                String faculty_id = this.userIDInfo.getText();
-                int room_id = Integer.parseInt(this.room_array[row_selection[0]][0].toString().substring(0, 3));
-                String time_slot = this.time_slots[column_selection[0]].substring(0,2) + "-" + this.time_slots[column_selection[0]].substring(6,8);
-                try {
-                    return_type = us.reservation(faculty_id, room_id, time_slot);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                if(return_type == -1) JOptionPane.showMessageDialog(frame, "Room is already reserved.");
-                else if(return_type == -2) JOptionPane.showMessageDialog(frame, "You have already reserved a room in same time slot.");
-                else if(return_type == -3) JOptionPane.showMessageDialog(frame, "You have already reserved for 3 hours.");
-                else JOptionPane.showMessageDialog(frame, "Your booking is submitted.");
-                try {
-                    frame = new UserFrame();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }//GEN-LAST:event_submitBookingButtonActionPerformed
+    });
+}//GEN-LAST:event_submitBookingButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         this.dispose();
@@ -261,10 +230,10 @@ public class UserFrame extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_cancelBookingButtonActionPerformed
 
-    private Object[][] transformation(){
-        Object [][] room_array = new Object[this.rooms.size()][this.rooms.get(0).getSize()];
-        for(int i = 0; i < this.rooms.size(); i++){
-            room_array[i][0] = this.rooms.get(i).getRoom_id() + "(" + this.rooms.get(i).getRoom_location()  + ")";
+    private Object[][] transformation() {
+        Object[][] room_array = new Object[this.rooms.size()][this.rooms.get(0).getSize()];
+        for (int i = 0; i < this.rooms.size(); i++) {
+            room_array[i][0] = this.rooms.get(i).getRoom_id() + "(" + this.rooms.get(i).getRoom_location() + ")";
             room_array[i][1] = this.rooms.get(i).isIs_available_at_08();
             room_array[i][2] = this.rooms.get(i).isIs_available_at_09();
             room_array[i][3] = this.rooms.get(i).isIs_available_at_10();
@@ -329,7 +298,7 @@ public class UserFrame extends javax.swing.JFrame {
     private javax.swing.JLabel userIDInfo;
     // End of variables declaration//GEN-END:variables
 
-    public void setUserIDInfo(String a){
+    public void setUserIDInfo(String a) {
         this.userIDInfo.setText(a);
     }
 }

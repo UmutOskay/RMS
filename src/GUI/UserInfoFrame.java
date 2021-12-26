@@ -5,18 +5,29 @@
  */
 package GUI;
 
+import Model.Object.Room;
+import Model.Object.User;
+import Model.Services.DisplayService;
+
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
  * @author muhse
  */
 public class UserInfoFrame extends javax.swing.JFrame {
-
+    private DisplayService ds;
+    private ArrayList<User> users;
+    private Object[][] user_array;
     /**
      * Creates new form UserInfoFrame
      */
-    public UserInfoFrame() {
+    public UserInfoFrame() throws SQLException {
+        this.ds = new DisplayService();
+        this.users = this.ds.displayUser();
+        this.user_array = transformation();
         initComponents();
     }
 
@@ -45,12 +56,7 @@ public class UserInfoFrame extends javax.swing.JFrame {
         });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
+                this.user_array,
             new String [] {
                 "User ID", "Name", "Surname"
             }
@@ -97,6 +103,23 @@ public class UserInfoFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private Object[][] transformation(){
+        Object [][] user_array = new Object[this.users.size()][3];
+        for(int i = 0; i < this.users.size(); i++){
+            user_array[i][0] = this.users.get(i).getFaculty_id();
+            String [] name_splitted  = this.users.get(i).getUser_full_name().split(" ", -1);
+            if(name_splitted.length == 2){
+                user_array[i][1] = name_splitted[0];
+                user_array[i][2] = name_splitted[1];
+            }else{
+                user_array[i][1] = name_splitted[0] + " " + name_splitted[1];
+                user_array[i][2] = name_splitted[2];
+            }
+
+        }
+        return user_array;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -127,7 +150,11 @@ public class UserInfoFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserInfoFrame().setVisible(true);
+                try {
+                    new UserInfoFrame().setVisible(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

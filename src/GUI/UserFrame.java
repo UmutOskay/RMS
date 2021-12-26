@@ -7,6 +7,7 @@ package GUI;
 
 import Model.Object.Room;
 import Model.Services.DisplayService;
+import Model.Services.LoginService;
 import Model.Services.UpdateService;
 
 import javax.swing.*;
@@ -21,6 +22,7 @@ import java.util.Arrays;
  * @author muhse
  */
 public class UserFrame extends javax.swing.JFrame {
+    private LoginService ls;
     private DisplayService ds;
     private UpdateService us;
     private ArrayList<Room> rooms;
@@ -30,6 +32,7 @@ public class UserFrame extends javax.swing.JFrame {
      * Creates new form UserFrame
      */
     public UserFrame() throws SQLException {
+        this.ls = new LoginService();
         this.ds = new DisplayService();
         this.us = new UpdateService();
         this.rooms = this.ds.displayRoom();
@@ -183,31 +186,59 @@ public class UserFrame extends javax.swing.JFrame {
 
     private void submitBookingButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_submitBookingButtonActionPerformed
         java.awt.EventQueue.invokeLater(() -> {
-            
-            UserFrame frame = this;
-            int return_type = 0;
-            int [] row_selection = jTable4.getSelectedRows();
-            int [] column_selection = jTable4.getSelectedColumns();
-            String faculty_id = this.userIDInfo.getText();
-            int room_id = Integer.parseInt(this.room_array[row_selection[0]][0].toString().substring(0, 3));
-            String time_slot = this.time_slots[column_selection[0]].substring(0,2) + "-" + this.time_slots[column_selection[0]].substring(6,8);
+
+            int is_admin = 0;
             try {
-                return_type = us.reservation(faculty_id, room_id, time_slot);
+                is_admin = this.ls.is_admin(this.userIDInfo.getText());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            if(return_type == -1) JOptionPane.showMessageDialog(frame, "Room is already reserved.");
-            else if(return_type == -2) JOptionPane.showMessageDialog(frame, "You have already reserved a room in same time slot.");
-            else if(return_type == -3) JOptionPane.showMessageDialog(frame, "You have already reserved for 3 hours.");
-            else JOptionPane.showMessageDialog(frame, "Your booking is submitted.");
-            try {
-                frame = new UserFrame();
-            } catch (SQLException e) {
-                e.printStackTrace();
+
+            if(is_admin == 1){
+                UserFrame frame = this;
+                int return_type = 0;
+                int [] row_selection = jTable4.getSelectedRows();
+                int [] column_selection = jTable4.getSelectedColumns();
+                String faculty_id = this.userIDInfo.getText();
+                int room_id = Integer.parseInt(this.room_array[row_selection[0]][0].toString().substring(0, 3));
+                String time_slot = this.time_slots[column_selection[0]].substring(0,2) + "-" + this.time_slots[column_selection[0]].substring(6,8);
+                try {
+                    return_type = us.reservation(faculty_id, room_id, time_slot);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                if(return_type == -1) JOptionPane.showMessageDialog(frame, "Room is already reserved.");
+                else if(return_type == -2) JOptionPane.showMessageDialog(frame, "You have already reserved a room in same time slot.");
+                else if(return_type == -3) JOptionPane.showMessageDialog(frame, "You have already reserved for 3 hours.");
+                else JOptionPane.showMessageDialog(frame, "Your booking is submitted.");
+                try {
+                    frame = new UserFrame();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                UserFrame frame = this;
+                int return_type = 0;
+                int [] row_selection = jTable4.getSelectedRows();
+                int [] column_selection = jTable4.getSelectedColumns();
+                String faculty_id = this.userIDInfo.getText();
+                int room_id = Integer.parseInt(this.room_array[row_selection[0]][0].toString().substring(0, 3));
+                String time_slot = this.time_slots[column_selection[0]].substring(0,2) + "-" + this.time_slots[column_selection[0]].substring(6,8);
+                try {
+                    return_type = us.reservation(faculty_id, room_id, time_slot);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                if(return_type == -1) JOptionPane.showMessageDialog(frame, "Room is already reserved.");
+                else if(return_type == -2) JOptionPane.showMessageDialog(frame, "You have already reserved a room in same time slot.");
+                else if(return_type == -3) JOptionPane.showMessageDialog(frame, "You have already reserved for 3 hours.");
+                else JOptionPane.showMessageDialog(frame, "Your booking is submitted.");
+                try {
+                    frame = new UserFrame();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-            
-            
-            
         });
     }//GEN-LAST:event_submitBookingButtonActionPerformed
 

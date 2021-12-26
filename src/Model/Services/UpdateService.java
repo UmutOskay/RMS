@@ -186,8 +186,9 @@ public class UpdateService {
                 else time_slot_to_remove = arr_of_time_slot[0];
 
                 time_slot_to_remove = "is_available_at_" + time_slot_to_remove;
+                System.out.println(time_slot_to_remove);
 
-                stmt = this.conn.prepareStatement("update room set " + time_slot_to_remove  + "= TRUE where room_id=?" );
+                stmt = this.conn.prepareStatement("update room set " + time_slot_to_remove  + "= False where room_id=?" );
                 stmt.setInt(1, room_id);
                 stmt.executeUpdate();
 

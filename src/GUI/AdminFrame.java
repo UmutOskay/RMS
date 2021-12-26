@@ -116,8 +116,12 @@ public class AdminFrame extends UserFrame {
 
     private void usersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersButtonActionPerformed
         java.awt.EventQueue.invokeLater(() -> {
+            try {
                 new UserInfoFrame().setVisible(true);
-            });
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }//GEN-LAST:event_usersButtonActionPerformed
 
     /**

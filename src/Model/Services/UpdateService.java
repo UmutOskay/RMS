@@ -2,6 +2,9 @@ package Model.Services;
 
 import Model.JDBCConnection.JDBCConnection;
 import Model.Mail.MailService;
+import Model.Object.User;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -14,6 +17,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class UpdateService {
@@ -350,6 +354,18 @@ public class UpdateService {
         }
 
     }
+    @Test
+    void reservationTest() throws SQLException {
+        int testOne = this.reservation("S017812",103,"10-11");
+        int testTwo = this.reservation("S017812",104,"10-11");
+        int testThree = this.reservation("S017812",103,"11-12");
+        int testFour = this.reservation("S017812",103,"12-13");
+        int testFive = this.reservation("S017812",103,"14-15");
 
+        this.reservation("S017812",104,"10-11");
+
+
+        Assertions.assertEquals(0, testOne);
+        }
 
 }

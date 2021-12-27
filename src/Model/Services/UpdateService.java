@@ -317,7 +317,7 @@ public class UpdateService {
             stmt.setString(1, faculty_id);
             stmt.executeUpdate();
 
-            stmt = this.conn.prepareStatement("update user set banned_at=NULL where faculty_id=?");
+            stmt = this.conn.prepareStatement("update user set banned_until=NULL where faculty_id=?");
             stmt.setString(1, faculty_id);
             stmt.executeUpdate();
             try {
@@ -357,15 +357,47 @@ public class UpdateService {
     @Test
     void reservationTest() throws SQLException {
         int testOne = this.reservation("S017812",103,"10-11");
-        int testTwo = this.reservation("S017812",104,"10-11");
-        int testThree = this.reservation("S017812",103,"11-12");
-        int testFour = this.reservation("S017812",103,"12-13");
-        int testFive = this.reservation("S017812",103,"14-15");
+        int testTwo = this.reservation("S017815",103,"10-11");
+        int testThree = this.reservation("S017812",104,"10-11");
 
-        this.reservation("S017812",104,"10-11");
+        this.reservation("S017812",103,"11-12");
+        this.reservation("S017812",103,"12-13");
+        int testFour = this.reservation("S017812",103,"14-15");
 
 
         Assertions.assertEquals(0, testOne);
-        }
+        Assertions.assertEquals(-1, testTwo);
+        Assertions.assertEquals(-2, testThree);
+        Assertions.assertEquals(-3, testFour);
 
+    }
+    @Test
+    void cancellationTest() throws SQLException {
+        int testOne = this.cancellation("S017812",103,"10-11");
+        int testTwo = this.cancellation("S017815",103,"10-11");
+
+        this.cancellation("S017812",103,"11-12");
+        this.cancellation("S017812",103,"12-13");
+
+
+        Assertions.assertEquals(0, testOne);
+        Assertions.assertEquals(-2, testTwo);
+
+    }
+    @Test
+    void banTest() throws SQLException {
+        int testOne = banUser("S017815","14");
+        int testTwo = banUser("S017815","14");
+        Assertions.assertEquals(0, testOne);
+        Assertions.assertEquals(-1, testTwo);
+
+    }
+    @Test
+    void revokeBanTest() throws SQLException {
+        int testOne = revokeBan("S017815");
+        int testTwo = revokeBan("S017815");
+        Assertions.assertEquals(0, testOne);
+        Assertions.assertEquals(-1, testTwo);
+
+    }
 }

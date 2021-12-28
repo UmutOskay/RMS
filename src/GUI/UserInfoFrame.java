@@ -8,6 +8,8 @@ package GUI;
 import Model.Object.Room;
 import Model.Object.User;
 import Model.Services.DisplayService;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -119,7 +121,6 @@ public class UserInfoFrame extends javax.swing.JFrame {
         }
         return user_array;
     }
-
     /**
      * @param args the command line arguments
      */

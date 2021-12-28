@@ -8,8 +8,6 @@ package GUI;
 import Model.Services.LoginService;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -183,9 +181,8 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_userIDActionPerformed
 
     /**
-     * @param args the command line arguments
      */
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

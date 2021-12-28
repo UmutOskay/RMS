@@ -1,17 +1,12 @@
 package Model.Services;
 
-
-import Model.Encryption.Salter;
 import Model.JDBCConnection.JDBCConnection;
 import Model.Object.Reservation;
 import Model.Object.Room;
 import Model.Object.User;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DisplayService {
 
@@ -86,27 +81,5 @@ public class DisplayService {
             userReservations.add(reservation);
         }
         return userReservations;
-    }
-
-    @Test
-    void displayUserTest() throws SQLException {
-        ArrayList<User> users = new ArrayList<>();
-        PreparedStatement stmt = this.conn.prepareStatement("select faculty_id, user_fullname from user;");
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()){
-            User user = new User();
-            user.setFaculty_id(rs.getString(1));
-            user.setUser_full_name(rs.getString(2));
-            users.add(user);
-        }
-        for(int i = 0; i < users.size(); i++){
-            Assertions.assertEquals(users.get(i).getFaculty_id(), displayUser().get(i).getFaculty_id());
-            Assertions.assertEquals(users.get(i).getUser_full_name(), displayUser().get(i).getUser_full_name());
-            Assertions.assertEquals(users.get(i).getUser_mail(), displayUser().get(i).getUser_mail());
-            Assertions.assertEquals(users.get(i).isIs_admin(), displayUser().get(i).isIs_admin());
-            Assertions.assertEquals(users.get(i).isIs_banned(), displayUser().get(i).isIs_banned());
-            Assertions.assertEquals(users.get(i).getLeft_slots(), displayUser().get(i).getLeft_slots());
-            Assertions.assertEquals(users.get(i).getBanned_until(), displayUser().get(i).getBanned_until());
-        }
     }
 }

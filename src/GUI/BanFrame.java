@@ -5,10 +5,14 @@
  */
 package GUI;
 
+import Model.JDBCConnection.JDBCConnection;
 import Model.Services.UpdateService;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import javax.swing.JOptionPane;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  *
@@ -16,11 +20,17 @@ import java.sql.SQLException;
  */
 public class BanFrame extends javax.swing.JFrame {
     private UpdateService us;
+    private JDBCConnection jdbc_conn;
+    private Connection conn;
+    private Statement stmt;
     /**
      * Creates new form BanFrame
      */
     public BanFrame() {
         this.us = new UpdateService();
+        this.jdbc_conn = new JDBCConnection();
+        this.conn = jdbc_conn.getCon();
+        this.stmt = jdbc_conn.getStmt();
         initComponents();
     }
 
@@ -148,6 +158,7 @@ public class BanFrame extends javax.swing.JFrame {
             try {
                 int return_message = us.banUser(enteredId, amountOfBannedDays);
                 if(return_message == -1)JOptionPane.showMessageDialog(this, "The user is already banned.");
+                else if(return_message == -2)JOptionPane.showMessageDialog(this, "There is no user with given ID." );
                 else if(return_message == 0)JOptionPane.showMessageDialog(this, "User " + enteredId + " is banned for " + amountOfBannedDays + " days." );
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -201,6 +212,7 @@ public class BanFrame extends javax.swing.JFrame {
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;

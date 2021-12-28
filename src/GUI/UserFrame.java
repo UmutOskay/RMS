@@ -207,9 +207,9 @@ public class UserFrame extends javax.swing.JFrame {
                 e.printStackTrace();
             }
             if (return_type == -1) JOptionPane.showMessageDialog(frame, "Room is already reserved.");
-            else if (return_type == -2)
-                JOptionPane.showMessageDialog(frame, "You have already reserved a room in same time slot.");
+            else if (return_type == -2) JOptionPane.showMessageDialog(frame, "You have already reserved a room in same time slot.");
             else if (return_type == -3) JOptionPane.showMessageDialog(frame, "You have already reserved for 3 hours.");
+            else if (return_type == -4) JOptionPane.showMessageDialog(frame, "You cannot make reservation due to your ban.");
             else JOptionPane.showMessageDialog(frame, "Your booking is submitted.");
             try {
                 frame = new UserFrame();
@@ -231,11 +231,11 @@ public class UserFrame extends javax.swing.JFrame {
     private void cancelBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBookingButtonActionPerformed
 
         java.awt.EventQueue.invokeLater(() -> {
-            try {
+            /*try {
                 new CancelFrame(this.userIDInfo.getText()).setVisible(true);
             } catch (SQLException e) {
                 e.printStackTrace();
-            }
+            }*/
         });
     }//GEN-LAST:event_cancelBookingButtonActionPerformed
 
@@ -309,86 +309,5 @@ public class UserFrame extends javax.swing.JFrame {
 
     public void setUserIDInfo(String a) {
         this.userIDInfo.setText(a);
-    }
-
-    @Test
-    void submitBookingButtonActionPerformedTest() throws SQLException {
-        UserFrame frame = this;
-        String message;
-        int return_type = 0;
-        int[] row_selection = jTable4.getSelectedRows();
-        int[] column_selection = jTable4.getSelectedColumns();
-        String faculty_id = this.userIDInfo.getText();
-        int room_id = Integer.parseInt(this.room_array[row_selection[0]][0].toString().substring(0, 3));
-        String time_slot = this.time_slots[column_selection[0]].substring(0, 2) + "-" + this.time_slots[column_selection[0]].substring(6, 8);
-        try {
-            return_type = us.reservation(faculty_id, room_id, time_slot);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        if (return_type == -1)  message = "Room is already reserved.";
-        else if (return_type == -2) message = "You have already reserved a room in same time slot.";
-        else if (return_type == -3) message = "You have already reserved for 3 hours.";
-        else message = "Your booking is submitted.";
-
-        String jdbc_message;
-        PreparedStatement stmt = this.conn.prepareStatement("select user_mail from user where faculty_id=?");
-        stmt.setString(1, faculty_id);
-        ResultSet rs = stmt.executeQuery();
-        rs.next();
-        String user_mail = rs.getString(1);
-
-        stmt = this.conn.prepareStatement("select * from reservations where room_id=? and time_slot=?;");
-        stmt.setInt(1, room_id);
-        stmt.setString(2, time_slot);
-        rs = stmt.executeQuery();
-        if(rs.next()){
-            System.out.println("Room is already reserved");
-            jdbc_message = "Room is already reserved."; // -1 means room is already reserved. SRS-RMS-003.1
-        }
-        stmt = this.conn.prepareStatement("select * from reservations where faculty_id=? and time_slot=?;");
-        stmt.setString(1, faculty_id);
-        stmt.setString(2, time_slot);
-        rs = stmt.executeQuery();
-        if(rs.next()){
-            System.out.println("User has already reserved a room in same time slot");
-            jdbc_message = "You have already reserved a room in same time slot."; // -2 means user has already reserved a room in same time slot. SRS-RMS-006.1
-        }
-
-        stmt = this.conn.prepareStatement("select time_slots_left from user where faculty_id=?;");
-        stmt.setString(1, faculty_id);
-        rs = stmt.executeQuery();
-        if(rs.next()){
-            if(rs.getInt(1) == 0) {
-                System.out.println("User has already reserved for 3 hours.");
-                jdbc_message = "You have already reserved for 3 hours."; // -3 means user has already reserved for 3 hours. SRS-RMS-006.2
-            }
-        }
-
-
-        // Insert reservation information to reservation table.
-        stmt = this.conn.prepareStatement("insert into reservations values (?, ?, ?, ?, ?)");
-
-        Timestamp reservation_time = new Timestamp(System.currentTimeMillis());
-        Timestamp reservation_is_at = new Timestamp(System.currentTimeMillis()); // FROM UTC 0, we are at 3
-
-        String reservation_hour = "";
-        String[] arr_of_time_slot = time_slot.split("-", 0);
-
-        reservation_hour = arr_of_time_slot[0];
-        int int_reservation_hour = Integer.parseInt(reservation_hour);
-        reservation_is_at.setHours(int_reservation_hour);
-        reservation_is_at.setMinutes(0); // GET FROM STRING TIMESLOT
-        reservation_is_at.setSeconds(0); // GET FROM STRING TIMESLOT
-
-        stmt.setString(1, faculty_id);
-        stmt.setInt(2, room_id);
-        stmt.setString(3, time_slot);
-        stmt.setObject(4,reservation_time);
-        stmt.setObject(5,reservation_is_at);
-        stmt.executeUpdate();
-        jdbc_message = "Your booking is submitted.";
-
-        Assertions.assertEquals(message, jdbc_message);
     }
 }

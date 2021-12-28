@@ -2,9 +2,6 @@ package Model.Services;
 
 import Model.JDBCConnection.JDBCConnection;
 import Model.Mail.MailService;
-import Model.Object.User;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -13,12 +10,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.sql.*;
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class UpdateService {
 
@@ -72,6 +64,16 @@ public class UpdateService {
             if(rs.getInt(1) == 0) {
                 System.out.println("User has already reserved for 3 hours.");
                 return -3; // -3 means user has already reserved for 3 hours. SRS-RMS-006.2
+            }
+        }
+
+        stmt = this.conn.prepareStatement("select is_banned from user where faculty_id=?;");
+        stmt.setString(1, faculty_id);
+        rs = stmt.executeQuery();
+        if(rs.next()){
+            if(rs.getBoolean(1)) {
+                System.out.println("User is banned.");
+                return -4; // -4 means user is banned. SRS-RMS-006.2
             }
         }
 
@@ -240,9 +242,17 @@ public class UpdateService {
     }
 
     public int banUser(String faculty_id,String ban_duration)  throws SQLException  {
-        PreparedStatement stmt = this.conn.prepareStatement("select user_mail,is_banned from user where faculty_id=?");
+        PreparedStatement stmt = this.conn.prepareStatement("select user_fullname from user where faculty_id = ?");
         stmt.setString(1, faculty_id);
         ResultSet rs = stmt.executeQuery();
+
+        if(!rs.next()){
+            return -2; // There is no user with given ID
+        }
+
+        stmt = this.conn.prepareStatement("select user_mail,is_banned from user where faculty_id=?");
+        stmt.setString(1, faculty_id);
+        rs = stmt.executeQuery();
         rs.next();
         String user_mail = rs.getString(1);
         Boolean is_banned = rs.getBoolean(2);
@@ -352,52 +362,6 @@ public class UpdateService {
             return -1;
 
         }
-
-    }
-    @Test
-    void reservationTest() throws SQLException {
-        int testOne = this.reservation("S017812",103,"10-11");
-        int testTwo = this.reservation("S017815",103,"10-11");
-        int testThree = this.reservation("S017812",104,"10-11");
-
-        this.reservation("S017812",103,"11-12");
-        this.reservation("S017812",103,"12-13");
-        int testFour = this.reservation("S017812",103,"14-15");
-
-
-        Assertions.assertEquals(0, testOne);
-        Assertions.assertEquals(-1, testTwo);
-        Assertions.assertEquals(-2, testThree);
-        Assertions.assertEquals(-3, testFour);
-
-    }
-    @Test
-    void cancellationTest() throws SQLException {
-        int testOne = this.cancellation("S017812",103,"10-11");
-        int testTwo = this.cancellation("S017815",103,"10-11");
-
-        this.cancellation("S017812",103,"11-12");
-        this.cancellation("S017812",103,"12-13");
-
-
-        Assertions.assertEquals(0, testOne);
-        Assertions.assertEquals(-2, testTwo);
-
-    }
-    @Test
-    void banTest() throws SQLException {
-        int testOne = banUser("S017815","14");
-        int testTwo = banUser("S017815","14");
-        Assertions.assertEquals(0, testOne);
-        Assertions.assertEquals(-1, testTwo);
-
-    }
-    @Test
-    void revokeBanTest() throws SQLException {
-        int testOne = revokeBan("S017815");
-        int testTwo = revokeBan("S017815");
-        Assertions.assertEquals(0, testOne);
-        Assertions.assertEquals(-1, testTwo);
 
     }
 }

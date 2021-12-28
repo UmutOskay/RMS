@@ -25,7 +25,7 @@ public class CancelFrame extends javax.swing.JFrame {
     /**
      * Creates new form CancelFrame
      */
-    public CancelFrame(String faculty_id) throws SQLException {
+    public CancelFrame() throws SQLException {
         this.ds = new DisplayService();
         this.userReservations = ds.displayUserReservations(faculty_id);
         this.userReservationsArray = transformation();
@@ -155,12 +155,13 @@ public class CancelFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cancelButton2ActionPerformed
 
-    private void cancelButton3ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_cancelButton3ActionPerformed
+    private int cancelButton3ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_cancelButton3ActionPerformed
         // TODO add your handling code here:
         String room_id = userReservationsArray[2][0];
         String time_slot = userReservationsArray[2][1];
 
-        us.cancellation(faculty_id,Integer.parseInt(room_id),time_slot);
+        int return_type = us.cancellation("S017815",Integer.parseInt(room_id),time_slot);
+        return return_type;
 
     }//GEN-LAST:event_cancelButton3ActionPerformed
 
@@ -196,11 +197,11 @@ public class CancelFrame extends javax.swing.JFrame {
             private String faculty_id;
 
             public void run() {
-                try {
+                /*try {
                     new CancelFrame(this.faculty_id).setVisible(true);
                 } catch (SQLException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         });
     }
@@ -214,6 +215,7 @@ public class CancelFrame extends javax.swing.JFrame {
         }
         return userReservationArray;
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton1;
     private javax.swing.JButton cancelButton2;

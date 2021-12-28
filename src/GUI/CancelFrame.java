@@ -25,7 +25,7 @@ public class CancelFrame extends javax.swing.JFrame {
     /**
      * Creates new form CancelFrame
      */
-    public CancelFrame() throws SQLException {
+    public CancelFrame(String faculty_id) throws SQLException {
         this.ds = new DisplayService();
         this.userReservations = ds.displayUserReservations(faculty_id);
         this.userReservationsArray = transformation();
